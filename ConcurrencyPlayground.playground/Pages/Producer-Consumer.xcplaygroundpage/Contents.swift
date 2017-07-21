@@ -29,6 +29,7 @@ public class Shop {
         
         mutex.wait()
             let product = shelf.removeLast()
+            print("Remove: there are now \(shelf.count) items on shelf")
         mutex.signal()
         
         spaces.signal()
@@ -42,7 +43,9 @@ public class Shop {
         
         mutex.wait()
             shelf.append(product)
+            print("Add: there are now \(shelf.count) items on shelf")
         mutex.signal()
+        
         
         items.signal()
     }
@@ -80,6 +83,7 @@ public class Producer {
     
     private let dispatchQueue = DispatchQueue.global(qos: .userInitiated)
     private let id:String
+    private weak var shop:Shop?
     
     init(named name:String) {
         id = name
@@ -87,17 +91,22 @@ public class Producer {
     
     public func produce() -> Product {
         print("Producer (\(id)) produced an item")
+
         return Product()
     }
     
     public func run(at shop:Shop) {
+        
+        self.shop = shop
         
         dispatchQueue.async {
             
             var counter = 0
             
             while (counter < 10) {
-                    shop.putOnShelf(product: self.produce())
+                
+                let product = self.produce()
+                self.shop?.putOnShelf(product: product)
 
                 counter = counter + 1
                 
@@ -107,7 +116,7 @@ public class Producer {
     }
 }
 
-let carrefour = Shop(withShelfSize: 1)
+let carrefour = Shop(withShelfSize: 5)
 
 var producers = [Producer]()
 
@@ -123,11 +132,11 @@ producers.append( Producer(named: "Lyttos"))
 producers.append( Producer(named: "Helga's"))
 
 let consumer = Consumer()
-consumer.run(at: carrefour)
 
 for producer in producers {
     producer.run(at: carrefour)
 }
+consumer.run(at: carrefour)
 
 PlaygroundPage.current.needsIndefiniteExecution = true
 
