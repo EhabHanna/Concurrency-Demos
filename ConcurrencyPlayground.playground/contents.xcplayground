@@ -4,5 +4,6 @@
         <page name='Smokers'/>
         <page name='Dining Philosophers'/>
         <page name='Producer-Consumer'/>
+        <page name='RollerCoaster'/>
     </pages>
 </playground>
