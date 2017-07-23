@@ -15,6 +15,13 @@ The solution presented here was proposed by D. L. Parnas, see acknowledgements.
 
 more details about this problem can be found [here](https://en.wikipedia.org/wiki/Cigarette_smokers_problem)
 
+## Producer Consumer problem
+This problem needs no introduction.
+
+## Roller Coaster problem
+Imagine a roller coaster ride, there are (n) number of passengers waiting to ride and (x) number of cars at the ride and each car can take exactly (c) passengers. Cars cannot start untill they have (c) passengers onboard, only 1 car is allowed to load at a time, cars can run concurrently on the tracks of the ride, passengers cannot leave a car until it has completed the ride, cars have to unload in the same order they loaded in.
+
+more details about this problem and its solution can be found in Allen Downey's book, see acknowledgements.
 
 ## Authors
 
@@ -24,3 +31,4 @@ more details about this problem can be found [here](https://en.wikipedia.org/wik
 
 * A. S. Tannenbaum - [Modern Operating Systems](https://www.amazon.com/Modern-Operating-Systems-Andrew-Tanenbaum/dp/013359162X/ref=sr_1_2/135-8446626-0686055?s=books&ie=UTF8&qid=1500610484&sr=1-2&refinements=p_27%3AAndrew+S.+Tanenbaum)
 * D. L. Parnas - [Research Showcase @ CMU](http://repository.cmu.edu/cgi/viewcontent.cgi?article=2992&context=compsci)
+* Allen B. Downey - [The Little Book of Semaphores](http://greenteapress.com/wp/semaphores/)
